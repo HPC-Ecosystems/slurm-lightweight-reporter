@@ -1,2 +1,4 @@
 .vagrant/
+setenv.old.c
+
 openhpc-2.x-virtual-lab/
