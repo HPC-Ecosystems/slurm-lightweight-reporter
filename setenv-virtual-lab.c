@@ -7,3 +7,4 @@ cluster_ip_range=10.10.10.0/24
 sms_eth_internal=eth1 # Internal Ethernet interface on SMS
 internal_netmask=255.255.255.0 # Subnet netmask for internal network
 CHROOT=/opt/ohpc/admin/images/rocky8.5
+nagios_web_password=nagiospw
