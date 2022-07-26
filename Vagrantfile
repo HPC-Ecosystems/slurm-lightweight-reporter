@@ -25,6 +25,7 @@ Vagrant.configure("2") do |config|
   
 	# https://app.vagrantup.com/bento/boxes/rockylinux-8
   config.vm.box = "bento/rockylinux-8"
+	# this is RockyLinux 8.6 "Green Obsidian"
   config.vm.box_version = "202206.14.0"
 	
 	config.vm.hostname = "sms-host"
