@@ -21,11 +21,12 @@ Vagrant.configure("2") do |config|
 	
 	# https://app.vagrantup.com/bento/boxes/rockylinux-8.5
   #config.vm.box = "bento/rockylinux-8.5"
-  #config.vm.box_version = "202112.19.0"
+
   
 	# https://app.vagrantup.com/bento/boxes/rockylinux-8
   config.vm.box = "bento/rockylinux-8"
-
+  config.vm.box_version = "202206.14.0"
+	
 	config.vm.hostname = "sms-host"
   
   #config.vm.post_up_message = "HPC Ecosystems \r\n user:vagrant password:vagrant"
@@ -85,6 +86,7 @@ Vagrant.configure("2") do |config|
   # argument is a set of non-required options.
   # config.vm.synced_folder "../data", "/vagrant_data"
   # config.vm.synced_folder "
+	#config.vm.synced_folder ".", "/home/vagrant"
 
   # Provider-specific configuration so you can fine-tune various
   # backing providers for Vagrant. These expose provider-specific options.
