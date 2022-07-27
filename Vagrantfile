@@ -17,6 +17,10 @@ Vagrant.configure("2") do |config|
   # https://docs.vagrantup.com.
   # https://vagrantcloud.com/search.
 
+	config.vm.define "compute00" do |compute00|
+		web.vm.box = "compute00"
+	end
+
   config.ssh.insert_key = false
 	
 	# https://app.vagrantup.com/bento/boxes/rockylinux-8.5
