@@ -17,9 +17,9 @@ Vagrant.configure("2") do |config|
   # https://docs.vagrantup.com.
   # https://vagrantcloud.com/search.
 
-#	config.vm.define "compute00" do |compute00|
-#		web.vm.box = "compute00"
-#	end
+	config.vm.define "compute00" do |compute00|
+		compute00.vm.box = "compute00"
+	end
 
   config.ssh.insert_key = false
 	
