@@ -3,3 +3,4 @@ setenv.old.c
 
 *.iso
 openhpc-2.x-virtual-lab/
+setenv-virtual-lab.c.bak
