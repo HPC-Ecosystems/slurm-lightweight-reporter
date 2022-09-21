@@ -19,7 +19,7 @@ Vagrant.configure("2") do |config|
 
     smshost.vm.box = "bento/rockylinux-8"
     smshost.vm.box_version = "202206.14.0"
-    smshost.vm.hostname = "sms-host"
+    smshost.vm.hostname = "smshost"
 
     smshost.vm.network "forwarded_port", guest: 22, host: 2299, host_ip: "127.0.0.1", id: "ssh"
     smshost.vm.network "private_network", ip: "10.10.10.10",virtualbox__intnet: "hpcnet"
