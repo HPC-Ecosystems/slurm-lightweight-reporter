@@ -9,13 +9,14 @@
 ###
 ### Developed by:
 ### Lara Timm, HPC Engineer (ACE Lab)
+### Eugene de Beste, Senior Cloud/HPC Engineer (ACE Lab)
 ### Bryan Johnston, Senior Technologist (ACE Lab)
 ###
 ################################################
 
 Vagrant.configure("2") do |config|
 
-  config.vm.define "smshost" do |smshost|
+    config.vm.define "smshost", primary: true do |smshost|
 
     smshost.vm.box = "bento/rockylinux-8"
     smshost.vm.box_version = "202206.14.0"
@@ -43,8 +44,8 @@ Vagrant.configure("2") do |config|
 
     compute00.vm.box = "file://./package.box"
     compute00.vm.hostname = "compute00"
-    compute00.vm.boot_timeout = 5
     compute00.vm.network "private_network", :adapter=>1, ip: "10.10.10.100", mac: "080027F9F3B1", virtualbox__intnet: "hpcnet"
+    compute00.vm.communicator = ""
 
     compute00.vm.provider "virtualbox" do |vb|
     
@@ -61,8 +62,8 @@ Vagrant.configure("2") do |config|
 
     compute01.vm.box = "file://./package.box"
     compute01.vm.hostname = "compute01"
-    compute01.vm.boot_timeout = 5
     compute01.vm.network "private_network", :adapter=>1, ip: "10.10.10.101", mac: "080027F59A31", virtualbox__intnet: "hpcnet"
+    compute01.vm.communicator = ""
 
     compute01.vm.provider "virtualbox" do |vb|
     
