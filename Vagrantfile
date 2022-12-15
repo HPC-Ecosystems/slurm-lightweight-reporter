@@ -19,7 +19,7 @@ Vagrant.configure("2") do |config|
     config.vm.define "smshost", primary: true do |smshost|
 
     smshost.vm.box = "bento/rockylinux-8"
-    smshost.vm.box_version = "202206.14.0"
+    smshost.vm.box_version = "202212.11.0" 
     smshost.vm.hostname = "smshost"
 
     smshost.vm.network "forwarded_port", guest: 22, host: 2299, host_ip: "127.0.0.1", id: "ssh"
@@ -35,7 +35,7 @@ Vagrant.configure("2") do |config|
     end
 
     smshost.vm.provision "shell" do |s|
-      s.inline = "sudo yum install vim git tmux -y"
+      s.inline = "sudo yum install vim git tmux -y; sed -i '/smshost/d' /etc/hosts"
       end
 
   end
