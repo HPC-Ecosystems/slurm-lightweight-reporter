@@ -1,4 +1,8 @@
 # slurm-lightweight-reporter
 Minimal Bash-based Slurm reporting script
 
-make the file executable (chmod) and enjoy!
+## Configuration
+- [ ] make the file executable (chmod)
+- [ ] update the LOGFILE location
+- [ ] update the REPORT location
+- [ ] specify the DAYS and CUTOFF parameters
