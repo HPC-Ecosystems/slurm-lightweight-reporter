@@ -1,6 +1,9 @@
-.vagrant/
-setenv.old.c
+# .gitignore
+# Ignore everything
+*
 
-*.iso
-openhpc-2.x-virtual-lab/
-setenv-virtual-lab.c.bak
+# Allow folders to be traversed
+!*/
+
+# Allow the file
+!slurm-weekly-summary.sh
