@@ -320,8 +320,9 @@ echo "" >> "$REPORT"
 # TODO: history snapshots
 
 
-# Debugging Data
-samplejobsummary 1 60
+# TO DO: set up a parameters file that gets read into this one
+
+samplejobsummary 0 0 # currently set to 0 but can be useful for samples or debugging
 
 
 # Mail summary
