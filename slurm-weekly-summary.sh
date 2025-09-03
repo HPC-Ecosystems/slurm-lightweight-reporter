@@ -2,6 +2,9 @@
 # Uses native Slurm filebased logs (no accounting)
 # 
 # Does the lifting with BASH and then appends to the REPORT file
+# 
+# Modularised so you can choose what to include in the report
+#
 ################################################################
 
 #!/bin/bash
