@@ -39,20 +39,21 @@ JOBS=$(awk -v cutoff="$CUTOFF" '
 ' "$LOGFILE")
 
 
-echo "=== Sample Job Lines ===" >> "$REPORT"
-echo "$JOBS" | head -n 10 >> "$REPORT"
-echo "" >> "$REPORT"
+append_sample_job_summary() {
+	echo "=== Sample Job Lines ===" >> "$REPORT"
+	echo "$JOBS" | head -n 10 >> "$REPORT"
+	echo "" >> "$REPORT"
 
-echo "=== Sample Parsed Fields ===" >> "$REPORT"
-echo "$JOBS" | head -n 10 | while read -r line; do
-    jobid=$(echo "$line" | grep -oP 'JobId=\K[0-9]+')
-    state=$(echo "$line" | grep -oP 'JobState=\K\S+')
-    elapsed=$(echo "$line" | grep -oP 'Elapsed=\K[0-9:]+')
-    tres=$(echo "$line" | grep -oP 'Tres=\K[^ ]+')
-    printf "  JobID: %-6s  State: %-10s  Elapsed: %-8s  Tres: %s\n" "$jobid" "$state" "$elapsed" "$tres"
-done >> "$REPORT"
-echo "" >> "$REPORT"
-
+	echo "=== Sample Parsed Fields ===" >> "$REPORT"
+	echo "$JOBS" | head -n 10 | while read -r line; do
+		jobid=$(echo "$line" | grep -oP 'JobId=\K[0-9]+')
+		state=$(echo "$line" | grep -oP 'JobState=\K\S+')
+		elapsed=$(echo "$line" | grep -oP 'Elapsed=\K[0-9:]+')
+		tres=$(echo "$line" | grep -oP 'Tres=\K[^ ]+')
+		printf "  JobID: %-6s  State: %-10s  Elapsed: %-8s  Tres: %s\n" "$jobid" "$state" "$elapsed" "$tres"
+	done >> "$REPORT"
+	echo "" >> "$REPORT"
+}
 
 ## SUMMARY COUNTS ##
 # JOBS INFORMATION
