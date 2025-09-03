@@ -39,22 +39,30 @@ JOBS=$(awk -v cutoff="$CUTOFF" '
 ' "$LOGFILE")
 
 
-append_sample_job_summary() {
-	echo "=== Sample Job Lines ===" >> "$REPORT"
-	echo "$JOBS" | head -n 10 >> "$REPORT"
-	echo "" >> "$REPORT"
+# reads a parameter to determine the number of lines to take for each section
+# append_sample_job_summary 5 1 # Takes 5 jobs and 1 parsed field
+samplejobsummary() {
+    local raw_count=${1:-0}
+    local parsed_count=${2:-0}
 
-	echo "=== Sample Parsed Fields ===" >> "$REPORT"
-	echo "$JOBS" | head -n 10 | while read -r line; do
-		jobid=$(echo "$line" | grep -oP 'JobId=\K[0-9]+')
-		state=$(echo "$line" | grep -oP 'JobState=\K\S+')
-		elapsed=$(echo "$line" | grep -oP 'Elapsed=\K[0-9:]+')
-		tres=$(echo "$line" | grep -oP 'Tres=\K[^ ]+')
-		printf "  JobID: %-6s  State: %-10s  Elapsed: %-8s  Tres: %s\n" "$jobid" "$state" "$elapsed" "$tres"
-	done >> "$REPORT"
-	echo "" >> "$REPORT"
+    if (( raw_count > 0 )); then
+        echo "=== Sample Job Lines (Top $raw_count) ===" >> "$REPORT"
+        echo "$JOBS" | head -n "$raw_count" >> "$REPORT"
+        echo "" >> "$REPORT"
+    fi
+
+    if (( parsed_count > 0 )); then
+        echo "=== Sample Parsed Fields (Top $parsed_count) ===" >> "$REPORT"
+        echo "$JOBS" | head -n "$parsed_count" | while read -r line; do
+            jobid=$(echo "$line" | grep -oP 'JobId=\K[0-9]+')
+            state=$(echo "$line" | grep -oP 'JobState=\K\S+')
+            elapsed=$(echo "$line" | grep -oP 'Elapsed=\K[0-9:]+')
+            tres=$(echo "$line" | grep -oP 'Tres=\K[^ ]+')
+            printf "  JobID: %-6s  State: %-10s  Elapsed: %-8s  Tres: %s\n" "$jobid" "$state" "$elapsed" "$tres"
+        done >> "$REPORT"
+        echo "" >> "$REPORT"
+    fi
 }
-
 ## SUMMARY COUNTS ##
 # JOBS INFORMATION
 # Count job states within the reporting window
@@ -310,6 +318,10 @@ done >> "$REPORT"
 echo "" >> "$REPORT"
 # historical snapshots
 # TODO: history snapshots
+
+
+# Debugging Data
+samplejobsummary 1 60
 
 
 # Mail summary
